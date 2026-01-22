@@ -1,0 +1,93 @@
+/* WishlistPage.css */
+.wishlist-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+.wishlist-content {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.wishlist-page .page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.wishlist-page .page-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 40px;
+}
+
+.wishlist-item-wrapper {
+    position: relative;
+}
+
+/* ProductCard의 기존 액션 버튼 위에 삭제 버튼 오버레이 */
+.btn-remove-wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ef4444;
+    /* Red for remove */
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-remove-wishlist:hover {
+    background: #fee2e2;
+    transform: scale(1.1);
+}
+
+.empty-wishlist {
+    text-align: center;
+    padding: 80px 0;
+}
+
+.empty-wishlist .icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+    opacity: 0.5;
+}
+
+.empty-wishlist p {
+    font-size: 16px;
+    color: #4b5563;
+    margin-bottom: 32px;
+}
+
+.btn-shop {
+    padding: 12px 32px;
+    background: #111827;
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-shop:hover {
+    background: #374151;
+}

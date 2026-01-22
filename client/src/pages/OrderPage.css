@@ -1,0 +1,251 @@
+/* OrderPage.css */
+
+.order-page {
+    background-color: #f8f8f8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-content {
+    flex: 1;
+    padding: 3rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.order-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    /* 왼쪽 정보 입력 1.5 : 오른쪽 요약 1 */
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 960px) {
+    .order-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Common Card Style */
+.info-card,
+.summary-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    margin-bottom: 2rem;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #111;
+    color: #111;
+}
+
+/* Form Styles */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #111;
+    outline: none;
+}
+
+.address-group .zipcode-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.address-group .btn-search-addr {
+    padding: 0 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.address-group .addr-input {
+    margin-bottom: 10px;
+}
+
+.address-group .addr-input:last-child {
+    margin-bottom: 0;
+}
+
+/* Payment Methods */
+.payment-methods-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.payment-option:hover {
+    background-color: #fafafa;
+}
+
+.payment-option.selected {
+    border-color: #111;
+    background-color: #fff;
+    box-shadow: 0 0 0 1px #111 inset;
+}
+
+.payment-option input {
+    margin-right: 10px;
+}
+
+.method-name {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Order Summary (Right Section) */
+.summary-card.sticky {
+    position: sticky;
+    top: 2rem;
+}
+
+.order-items-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1.5rem;
+    padding-right: 5px;
+    /* 스크롤바 공간 */
+}
+
+/* 스크롤바 스타일 */
+.order-items-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.order-items-list::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 3px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.summary-item-info {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.item-name {
+    display: block;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.item-meta {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.item-price {
+    font-weight: 600;
+    color: #111;
+    white-space: nowrap;
+}
+
+.divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 1.5rem 0;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+.price-row.total {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid #eee;
+    color: #111;
+    font-weight: 800;
+    font-size: 1.3rem;
+    align-items: center;
+}
+
+.total-price {
+    color: #e53935;
+    /* 강조색 */
+}
+
+.btn-place-order {
+    width: 100%;
+    padding: 1.2rem;
+    background-color: #111;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: background-color 0.2s;
+}
+
+.btn-place-order:hover {
+    background-color: #333;
+}

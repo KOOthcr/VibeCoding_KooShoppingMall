@@ -1,0 +1,67 @@
+.admin-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    display: block;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.2s;
+}
+
+.menu-button:hover {
+    color: #111827;
+}
+
+.menu-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.header-logo {
+    font-weight: 700;
+    color: #111827;
+    text-decoration: none;
+}
+
+.store-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.2s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.store-button:hover {
+    color: #111827;
+}
+
+.store-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Desktop styles - hide header on desktop */
+@media (min-width: 1024px) {
+    .admin-header {
+        display: none;
+    }
+}

@@ -1,0 +1,496 @@
+/* 기존 스타일 유지 (Global Scoping 적용) */
+.admin-product-form {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.admin-product-form .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.admin-product-form .page-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.admin-product-form .form-section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.admin-product-form .section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.admin-product-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.admin-product-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.admin-product-form .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.admin-product-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.admin-product-form .form-group label.required::after {
+    content: '*';
+    color: #dc2626;
+    margin-left: 2px;
+}
+
+.admin-product-form .form-group input[type="text"],
+.admin-product-form .form-group input[type="number"],
+.admin-product-form .form-group select,
+.admin-product-form .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.admin-product-form .form-group input:focus,
+.admin-product-form .form-group select:focus,
+.admin-product-form .form-group textarea:focus {
+    border-color: #000;
+    outline: none;
+}
+
+.admin-product-form .image-upload-container {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.admin-product-form .image-upload-placeholder {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #fafafa;
+    transition: all 0.2s;
+}
+
+.admin-product-form .image-upload-placeholder:hover {
+    border-color: #999;
+    background: #f0f0f0;
+}
+
+.admin-product-form .upload-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.admin-product-form .image-preview-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.admin-product-form .image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.admin-product-form .btn-remove-image {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    background: #dc2626;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.admin-product-form .additional-images-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.admin-product-form .options-container {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.admin-product-form .options-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.admin-product-form .option-guide {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.admin-product-form .hierarchical-group {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* New Layout for Option Group */
+.admin-product-form .h-group-content {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.admin-product-form .h-image-section {
+    flex-shrink: 0;
+}
+
+.admin-product-form .h-image-preview {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #ddd;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    background: #fdfdfd;
+}
+
+.admin-product-form .h-image-preview:hover {
+    border-color: #999;
+    background: #f5f5f5;
+}
+
+.admin-product-form .h-image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.admin-product-form .h-image-preview .upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #999;
+}
+
+.admin-product-form .h-image-preview .icon {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.admin-product-form .h-image-preview .text {
+    font-size: 0.75rem;
+}
+
+.admin-product-form .btn-remove-opt-img {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #dc2626;
+    color: #fff;
+    border: none;
+    font-size: 0.7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-product-form .h-inputs-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.admin-product-form .h-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.admin-product-form .color-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.admin-product-form .h-color-picker {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: none;
+}
+
+.admin-product-form .h-color-name {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    width: 150px;
+}
+
+.admin-product-form .btn-remove-group {
+    color: #dc2626;
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.admin-product-form .h-group-sizes {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.admin-product-form .size-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.admin-product-form .size-chip {
+    background: #eff6ff;
+    color: #1e40af;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid #bfdbfe;
+}
+
+.admin-product-form .size-chip button {
+    background: none;
+    border: none;
+    color: #60a5fa;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.admin-product-form .size-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-product-form .h-size-input {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: 120px;
+}
+
+.admin-product-form .input-tip {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.admin-product-form .h-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.admin-product-form .btn-add-color,
+.admin-product-form .btn-sync-options {
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.admin-product-form .btn-add-color {
+    background: #fff;
+    border: 1px dashed #999;
+    color: #555;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.admin-product-form .btn-add-color:hover {
+    border-color: #333;
+    color: #111;
+    background: #fafafa;
+}
+
+.admin-product-form .btn-sync-options {
+    background: #1a1a1a;
+    color: #fff;
+    border: 1px solid #1a1a1a;
+}
+
+/* SKUs Table */
+.admin-product-form .skus-container {
+    margin-top: 2rem;
+}
+
+.admin-product-form .skus-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.admin-product-form .skus-table {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.admin-product-form .sku-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    background: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e5e5;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.admin-product-form .sku-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+}
+
+.admin-product-form .sku-row:last-child {
+    border-bottom: none;
+}
+
+.admin-product-form .sku-col {
+    padding-right: 1rem;
+}
+
+.admin-product-form .sku-col input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.admin-product-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e5e5;
+}
+
+.admin-product-form .btn-primary,
+.admin-product-form .btn-secondary {
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.admin-product-form .btn-primary {
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+}
+
+.admin-product-form .btn-primary:hover {
+    background: #333;
+    border-color: #333;
+}
+
+.admin-product-form .btn-secondary {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.admin-product-form .btn-secondary:hover {
+    border-color: #999;
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    .admin-product-form .h-group-content {
+        flex-direction: column;
+    }
+
+    .admin-product-form .h-image-preview {
+        width: 100%;
+        height: 200px;
+    }
+}
