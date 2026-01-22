@@ -652,7 +652,6 @@ function AdminProductForm() {
                                     setFormData(prev => ({
                                         ...prev,
                                         useOptions: checked,
-                                        useOptions: checked,
                                         options: checked ? [{ name: '색상', type: 'color', values: [{ value: '', code: '#000000' }] }] : [],
                                         skus: []
                                     }));
