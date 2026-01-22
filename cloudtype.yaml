@@ -1,0 +1,8 @@
+name: vc-shopping-server
+app: node
+options:
+  nodeversion: "18"
+  entry: server.js
+  build: npm install
+  start: npm start
+context: server
