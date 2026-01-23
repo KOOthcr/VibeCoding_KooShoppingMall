@@ -21,11 +21,20 @@ connectDB();
 
 // 미들웨어
 app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'http://localhost:5000',
-        'https://vibe-coding-koo-shopping-mall.vercel.app'
-    ],
+    origin: (origin, callback) => {
+        // 로컬 테스트, 모바일 앱, 포스트맨 등 origin이 없는 경우 허용
+        if (!origin) return callback(null, true);
+
+        // 허용할 도메인 패턴 확인
+        if (origin.startsWith('http://localhost') ||
+            origin.endsWith('.vercel.app') ||
+            origin.endsWith('.cloudtype.app')) {
+            return callback(null, true);
+        }
+
+        // 그 외는 차단
+        callback(new Error('Not allowed by CORS'));
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
