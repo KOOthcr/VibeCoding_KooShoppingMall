@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useGoogleLogin } from '@react-oauth/google';
 import { userAPI } from '../services/api';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -68,6 +69,29 @@ function LoginPage() {
             setLoading(false);
         }
     };
+
+    // Google Login Handler
+    const handleGoogleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            try {
+                setLoading(true);
+                // 백엔드에 액세스 토큰 전달하여 로그인/회원가입 처리
+                const res = await userAPI.googleLogin({ access_token: tokenResponse.access_token });
+
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('user', JSON.stringify(res.data.user));
+                navigate('/');
+            } catch (err) {
+                console.error('Google Login Error:', err);
+                setError(err.response?.data?.message || '구글 로그인 중 오류가 발생했습니다.');
+            } finally {
+                setLoading(false);
+            }
+        },
+        onError: () => {
+            setError('구글 로그인에 실패했습니다.');
+        }
+    });
 
     return (
         <div className="login-page">
@@ -139,21 +163,18 @@ function LoginPage() {
                     </form>
 
                     <div className="divider">
-                        <span>또는</span>
+                        <span>또는 소셜 계정으로 로그인</span>
                     </div>
 
                     <div className="social-login">
-                        <button className="social-button google">
+                        <button
+                            className="social-button google"
+                            onClick={() => handleGoogleLogin()}
+                            disabled={loading}
+                            type="button"
+                        >
                             <span className="social-icon">G</span>
-                            Google로 로그인
-                        </button>
-                        <button className="social-button facebook">
-                            <span className="social-icon">f</span>
-                            Facebook으로 로그인
-                        </button>
-                        <button className="social-button apple">
-                            <span className="social-icon"></span>
-                            Apple로 로그인
+                            Google로 시작하기
                         </button>
                     </div>
 

@@ -5,6 +5,7 @@ import {
     getUserByEmail,
     createUser,
     loginUser,
+    googleLogin,
     updateUser,
     deleteUser,
 } from '../controllers/userController.js';
@@ -26,6 +27,9 @@ router.get('/email/:email', getUserByEmail);
 
 // POST /api/users - 새 사용자 생성 (회원가입)
 router.post('/', createUser);
+
+// POST /api/users/google-login - 구글 로그인
+router.post('/google-login', googleLogin);
 
 // POST /api/users/login - 로그인
 router.post('/login', loginUser);

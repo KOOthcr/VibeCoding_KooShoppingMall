@@ -90,6 +90,9 @@ export const userAPI = {
     // 회원가입
     create: (data) => api.post('/users', data),
 
+    // 구글 로그인
+    googleLogin: (data) => api.post('/users/google-login', data),
+
     // 로그인
     login: (data) => api.post('/users/login', data),
 

@@ -1,6 +1,10 @@
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { OAuth2Client } from 'google-auth-library';
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
 
 // 모든 사용자 조회 (주문 정보 포함)
 export const getAllUsers = async (req, res) => {
@@ -124,6 +128,11 @@ export const loginUser = async (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
+        // 로컬 계정이 아닌 경우 (비밀번호 없음)
+        if (user.authProvider === 'google' && !user.password) {
+            return res.status(400).json({ message: 'Please login with Google.' });
+        }
+
         // 비밀번호 확인
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
@@ -150,6 +159,68 @@ export const loginUser = async (req, res) => {
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+};
+
+// 구글 로그인
+export const googleLogin = async (req, res) => {
+    try {
+        const { access_token } = req.body;
+
+        // 1. 구글 API로 사용자 정보 가져오기
+        const response = await fetch(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`);
+
+        if (!response.ok) {
+            return res.status(400).json({ message: 'Invalid Google Token' });
+        }
+
+        const googleUser = await response.json();
+        const { email, name, sub: googleId } = googleUser;
+
+        // 2. 사용자 확인 또는 생성
+        let user = await User.findOne({ email });
+
+        if (user) {
+            // 이미 존재하는 이메일
+            if (!user.googleId) {
+                // 기존 로컬 계정과 연동
+                user.googleId = googleId;
+                // user.authProvider = 'google'; // 기존 데이터 유지 혹은 변경. 여기서는 로컬+구글 허용 의미로 둠
+                await user.save();
+            }
+        } else {
+            // 신규 사용자
+            user = new User({
+                email,
+                name: name,
+                googleId,
+                authProvider: 'google',
+                userType: 'customer',
+                // password는 required function에 의해 authProvider==='google'일 때 통과
+            });
+            await user.save();
+        }
+
+        // 3. 토큰 발급
+        const token = jwt.sign(
+            {
+                userId: user._id,
+                email: user.email,
+                userType: user.userType
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: '7d' }
+        );
+
+        res.json({
+            message: 'Google Login successful',
+            token,
+            user: user.toJSON()
+        });
+
+    } catch (error) {
+        console.error('Google Login Error:', error);
+        res.status(500).json({ message: 'Internal Server Error during Google Login' });
     }
 };
 
